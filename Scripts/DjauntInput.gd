@@ -1,3 +1,30 @@
+## DjauntInput
+# A flexible input management system for Godot that allows for dynamic input action registration and handling.
+#
+# Usage:
+# 1. Create a new script that extends DjauntInput
+# 2. Define an enum for your input actions (e.g. NewInputActions)
+# 3. Register your actions in _init()
+# 4. Add the script as an autoload/singleton in Project Settings
+#
+
+# func _init() -> void:
+#     register_action(NewInputActions.MOVE_UP, "move_up")
+#     register_action(NewInputActions.MOVE_DOWN, "move_down")
+#     # ... register other actions
+# ```
+#
+# To set up as an autoload/singleton:
+# 1. Go to Project Settings -> Autoload
+# 2. Add your input script (e.g., NewInputActions.gd)
+# 3. Set the Node Name (e.g., "NewInputActions")
+# 4. Enable "Enable" checkbox
+#
+# Then you can access your input system globally:
+# ```gdscript
+# NewInputActions.is_moving_up()  # Example from NewInputActions
+# ```
+
 class_name DjauntInput
 extends Node
 
