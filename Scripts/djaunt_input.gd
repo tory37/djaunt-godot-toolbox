@@ -56,6 +56,12 @@ func is_action_pressed(action_id) -> bool:
 	Logger.log("Action string is not empty")
 	return Input.is_action_pressed(action_string)
 
+func get_action_strength(action_id) -> float:
+	var action_string = get_action_string(action_id)
+	if action_string == "":
+		return 0.0
+	return Input.get_action_strength(action_string)
+
 # Check if an action was just pressed
 func is_action_just_pressed(action_id) -> bool:
 	var action_string = get_action_string(action_id)
