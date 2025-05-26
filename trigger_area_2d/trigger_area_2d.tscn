@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqftof3qmings"]
+
+[ext_resource type="Script" uid="uid://dhon8m5rhl687" path="res://addons/djaunt-toolbox/trigger_area_2d/trigger_area_2d.gd" id="1_j3y8h"]
+
+[node name="TriggerArea2D" type="Area2D" groups=["gates"]]
+script = ExtResource("1_j3y8h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
