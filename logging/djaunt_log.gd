@@ -6,32 +6,21 @@
 #
 # Usage:
 # ```gdscript
-# # Create a new logger instance (disabled by default)
-# var logger = DjauntLog.new()
-#
-# # Enable logging
-# logger.enable()
-#
 # # Log messages (only shown when enabled)
-# logger.log("This is a debug message")
+# DjauntLog.log("This is a debug message")
 # # Output: [DjauntLog] This is a debug message
 #
-# # Disable logging
-# logger.disable()
-# ```
-#
-# You can also create an enabled logger directly:
-# ```gdscript
-# var logger = DjauntLog.new(true)  # Enabled by default
+# # Enable/disable logging
+# DjauntLog.enable()
+# DjauntLog.disable()
 # ```
 
-class_name DjauntLog
-extends RefCounted
+extends Node
 
-var _enabled: bool
+var _enabled: bool = false
 
-func _init(enabled: bool = false) -> void:
-	_enabled = enabled
+func _init() -> void:
+	_enabled = false
 
 func enable() -> void:
 	_enabled = true
