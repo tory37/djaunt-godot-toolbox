@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg0c3y6cvnfun"]
+
+[ext_resource type="Script" uid="uid://dsnt8wmqcrrvx" path="res://djaunt-godot-toolbox/process_manager/process_node.gd" id="1_gqghs"]
+
+[node name="ProcessNode" type="Node"]
+script = ExtResource("1_gqghs")

@@ -1,0 +1,22 @@
+extends Node
+
+enum StageType {
+	NONE,
+	...
+}
+
+var _stage_registry: Dictionary[StageType, String] = {
+	StageType.NONE: "",
+	...
+}
+
+# Get stage path from ID
+func get_stage_path(stage_type: StageType) -> String:
+	if stage_type == StageType.NONE:
+		push_error("Stage type NONE is not valid")
+		return ""
+
+	if not _stage_registry.has(stage_type):
+		push_error("Stage type %s not found in registry" % stage_type)
+		return ""
+	return _stage_registry[stage_type]

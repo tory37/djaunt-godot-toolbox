@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://besux80xpicqk"]
+
+[ext_resource type="Script" uid="uid://cox0fhg0rajsx" path="res://djaunt-godot-toolbox/process_manager/physics_process_node.gd" id="1_8is4t"]
+
+[node name="PhysicsProcessNode" type="Node"]
+script = ExtResource("1_8is4t")

@@ -1,0 +1,12 @@
+extends DjauntDevelopConsole
+
+# Override this method to register your game's commands
+func _register_game_commands() -> void:
+	# Add your game-specific commands here
+	# Example: register_command("my_command", _cmd_my_command, "Description")
+	pass
+
+# Add your command implementations here
+# Example:
+# func _cmd_my_command(args: Array = []) -> void:
+#     command_executed.emit("My command executed")
