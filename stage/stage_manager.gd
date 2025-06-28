@@ -27,7 +27,7 @@ signal transition_from_completed()
 # The stage should emit this signal when it is ready to be used
 signal stage_initialized()
 
-var _debug: Debug = Debug.new("StageManager", true)
+var _debug: DjauntDebug = DjauntDebug.new("StageManager", true)
 
 func _ready() -> void:
 	_debug.trace_method("ready")

@@ -1,5 +1,5 @@
 extends RefCounted
-class_name Debug
+class_name DjauntDebug
 
 var _enabled: bool = false
 var _prefix: String = ""
