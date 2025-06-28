@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bdrlxjughapjv"]
 
-[ext_resource type="Script" uid="uid://ocamoijoyotl" path="res://djaunt-godot-toolbox/fade_to_black/fade_to_black.gd" id="1_xxxxx"]
+[ext_resource type="Script" uid="uid://bs8h3qwv88ego" path="res://djaunt-godot-toolbox/fade_to_black/fade_to_black.gd" id="1_xxxxx"]
 
 [node name="FadeToBlack" type="CanvasLayer"]
 layer = 100

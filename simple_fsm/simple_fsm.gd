@@ -1,11 +1,11 @@
 extends Node
 class_name SimpleFSM
 
-var _current_state: GameplayManagerState = null
+var _current_state: SimpleFSMState = null
 var _states: Dictionary = {}
 var _state_enum: Dictionary = {}
 
-func register_state(state_enum_value: int, state: GameplayManagerState) -> void:
+func register_state(state_enum_value: int, state: SimpleFSMState) -> void:
 	_states[state_enum_value] = state
 	_state_enum[state] = state_enum_value
 
@@ -16,7 +16,7 @@ func go_to_state(state_enum_value: int) -> void:
 	_current_state = _states[state_enum_value]
 	_current_state.enter()
 
-func get_current_state() -> GameplayManagerState:
+func get_current_state() -> SimpleFSMState:
 	return _current_state
 
 func get_current_state_name() -> String:
