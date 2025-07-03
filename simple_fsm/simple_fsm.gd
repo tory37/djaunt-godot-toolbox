@@ -1,3 +1,32 @@
+# SimpleFSM - Finite State Machine implementation
+#
+# A lightweight state machine that can work with both custom state classes
+# and inline SimplerFSMState instances.
+#
+# Usage with custom state classes:
+#   class IdleState extends SimpleFSMState:
+#       func enter(): print("Entering idle")
+#       func exit(): print("Exiting idle")
+#
+#   var fsm = SimpleFSM.new()
+#   fsm.register_state(StateEnum.IDLE, IdleState.new())
+#   fsm.go_to_state(StateEnum.IDLE)
+#
+# Usage with SimplerFSMState (inline states):
+#   var fsm = SimpleFSM.new()
+#   var idle_state = SimplerFSMState.new(
+#       func(): print("Entering idle"),
+#       func(): print("Exiting idle")
+#   )
+#   fsm.register_state(StateEnum.IDLE, idle_state)
+#   fsm.go_to_state(StateEnum.IDLE)
+#
+# State enum example:
+#   enum StateEnum { IDLE, WALK, RUN, JUMP }
+#
+# Override _get_state_name() in subclasses to provide meaningful state names
+# for debugging and logging purposes.
+
 extends Node
 class_name SimpleFSM
 
@@ -24,6 +53,9 @@ func get_current_state_name() -> String:
 		return _get_state_name(_state_enum[_current_state])
 	return "None"
 
+func _get_current_state_enum() -> int:
+	return _state_enum[_current_state]
+
 func _get_state_name(state_enum_value: int) -> String:
-	# This will be overridden by subclasses to provide meaningful state names
+	# This should be overridden by subclasses to provide meaningful state names
 	return "State_%d" % state_enum_value
