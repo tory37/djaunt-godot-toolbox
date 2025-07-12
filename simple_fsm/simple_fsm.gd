@@ -40,6 +40,7 @@ func register_state(state_name: String, state: SimpleFSMState) -> void:
 	_states[state_name] = state
 
 func go_to_state(state_name: String) -> void:
+	print("Going to state: ", state_name)
 	if _current_state:
 		if _should_log:
 			print("Exiting state: ", get_current_state_name())

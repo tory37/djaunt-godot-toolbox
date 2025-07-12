@@ -18,7 +18,13 @@
 class_name SimpleFSMState
 
 func enter():
-	pass
+	_on_enter()
 
 func exit():
+	_on_exit()
+
+func _on_enter() -> void:
+	pass
+
+func _on_exit() -> void:
 	pass
