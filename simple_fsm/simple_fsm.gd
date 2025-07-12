@@ -27,21 +27,28 @@
 # Override _get_state_name() in subclasses to provide meaningful state names
 # for debugging and logging purposes.
 
-extends Node
 class_name SimpleFSM
 
 var _current_state: SimpleFSMState = null
-var _states: Dictionary = {}
+var _states: Dictionary[String, SimpleFSMState] = {}
+var _should_log: bool = false
 
+func _init(should_log: bool = false) -> void:
+	_should_log = should_log
 
 func register_state(state_name: String, state: SimpleFSMState) -> void:
 	_states[state_name] = state
 
 func go_to_state(state_name: String) -> void:
 	if _current_state:
+		if _should_log:
+			print("Exiting state: ", get_current_state_name())
 		_current_state.exit()
 
 	_current_state = _states[state_name]
+
+	if _should_log:
+		print("Entering state: ", state_name)
 	_current_state.enter()
 
 func get_current_state() -> SimpleFSMState:
@@ -49,10 +56,5 @@ func get_current_state() -> SimpleFSMState:
 
 func get_current_state_name() -> String:
 	if _current_state:
-		return _get_state_name(_current_state)
+		return _states.find_key(_current_state)
 	return "None"
-
-func _get_state_name(state: SimpleFSMState) -> String:
-	# This should be overridden by subclasses to provide meaningful state names
-	return "State_%d" % state
-
