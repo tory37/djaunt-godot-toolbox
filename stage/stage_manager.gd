@@ -8,7 +8,7 @@ var current_stage: Node
 
 # Stage Change Signals
 # Emitted when we want to change to a new stage
-signal stage_change_requested(stage_name: String)
+signal stage_change_requested(stage_path: String)
 # Emitted when the stage change is started
 signal stage_change_started()
 # Emitted when the stage change is finished and level ready has been emitted
@@ -52,7 +52,6 @@ func _on_stage_change_requested(stage_path: String) -> void:
 	transition_to_completed.connect(_on_transition_to_complete.bind(stage_path))
 	transition_to_requested.emit()
 
-	
 func _on_transition_to_complete(stage_path: String) -> void:
 	_debug.trace_method("on_transition_to_complete")
 	transition_to_completed.disconnect(_on_transition_to_complete)
@@ -60,6 +59,7 @@ func _on_transition_to_complete(stage_path: String) -> void:
 	# Remove the current scene if it exists
 	if current_stage:
 		current_stage.queue_free()
+		await get_tree().process_frame  # Wait for queue_free to complete
 
 	stage_initialized.connect(_on_stage_initialized)
 
