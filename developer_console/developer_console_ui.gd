@@ -16,8 +16,8 @@ func _ready() -> void:
 	input_field.gui_input.connect(_on_input_gui_input)
 	
 	# Connect to console manager
-	if not DjauntDeveloperConsole.command_executed.is_connected(_on_command_executed):
-		DjauntDeveloperConsole.command_executed.connect(_on_command_executed)
+	if not DeveloperConsole.command_executed.is_connected(_on_command_executed):
+		DeveloperConsole.command_executed.connect(_on_command_executed)
 
 func _input(event: InputEvent) -> void:
 	# Toggle console with backtick key
@@ -26,7 +26,7 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled() # Consume the input event
 	
 	# Handle up/down arrows for command history
-	if DjauntDeveloperConsole.is_visible and event is InputEventKey:
+	if DeveloperConsole.is_visible and event is InputEventKey:
 		if event.pressed:
 			if event.keycode == KEY_UP:
 				_navigate_history(-1)
@@ -34,9 +34,9 @@ func _input(event: InputEvent) -> void:
 				_navigate_history(1)
 
 func toggle_console() -> void:
-	DjauntDeveloperConsole.set_console_visibility(!DjauntDeveloperConsole.is_visible)
+	DeveloperConsole.set_console_visibility(!DeveloperConsole.is_visible)
 	
-	if DjauntDeveloperConsole.is_visible:
+	if DeveloperConsole.is_visible:
 		show()
 		input_field.grab_focus()
 	else:
@@ -48,8 +48,8 @@ func _on_input_submitted(command: String) -> void:
 		return
 		
 	# Add command to history
-	DjauntDeveloperConsole.command_history.append(command)
-	DjauntDeveloperConsole.history_index = DjauntDeveloperConsole.command_history.size()
+	DeveloperConsole.command_history.append(command)
+	DeveloperConsole.history_index = DeveloperConsole.command_history.size()
 	
 	# Clear input
 	input_field.text = ""
@@ -58,7 +58,7 @@ func _on_input_submitted(command: String) -> void:
 	print_to_console("> " + command)
 	
 	# Execute command
-	DjauntDeveloperConsole.execute_command(command)
+	DeveloperConsole.execute_command(command)
 
 func _on_input_gui_input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -86,13 +86,13 @@ func clear_console() -> void:
 		child.queue_free()
 
 func _navigate_history(direction: int) -> void:
-	if DjauntDeveloperConsole.command_history.is_empty():
+	if DeveloperConsole.command_history.is_empty():
 		return
 		
-	DjauntDeveloperConsole.history_index = clamp(DjauntDeveloperConsole.history_index + direction, 0, DjauntDeveloperConsole.command_history.size())
+	DeveloperConsole.history_index = clamp(DeveloperConsole.history_index + direction, 0, DeveloperConsole.command_history.size())
 	
-	if DjauntDeveloperConsole.history_index < DjauntDeveloperConsole.command_history.size():
-		input_field.text = DjauntDeveloperConsole.command_history[DjauntDeveloperConsole.history_index]
+	if DeveloperConsole.history_index < DeveloperConsole.command_history.size():
+		input_field.text = DeveloperConsole.command_history[DeveloperConsole.history_index]
 		input_field.caret_column = input_field.text.length()
 	else:
 		input_field.text = ""

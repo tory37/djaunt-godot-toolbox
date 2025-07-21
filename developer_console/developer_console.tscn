@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b6x8v0j6y5n3q"]
 
-[ext_resource type="Script" uid="uid://bhe7ypvk6m0ck" path="res://util/developer_console/developer_console_ui.gd" id="1_2k4m3"]
+[ext_resource type="Script" uid="uid://cp3kbfhv4n1ha" path="res://djaunt-godot-toolbox/developer_console/developer_console_ui.gd" id="1_2k4m3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1"]
 content_margin_left = 8.0
