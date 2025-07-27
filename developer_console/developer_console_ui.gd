@@ -75,6 +75,16 @@ func print_to_console(text: String) -> void:
 	var label = Label.new()
 	label.text = text
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	
+	# Set monospace font for consistent character spacing
+	var label_settings = LabelSettings.new()
+	label_settings.font_size = 24
+	
+	var mono_font = SystemFont.new()
+	mono_font.font_names = ["Consolas", "Courier New", "Menlo", "Monospace"]  # pick a known system monospace
+	label_settings.font = mono_font
+	label.label_settings = label_settings
+	
 	output_container.add_child(label)
 	
 	# Scroll to bottom
