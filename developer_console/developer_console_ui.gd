@@ -59,6 +59,10 @@ func _on_input_submitted(command: String) -> void:
 	
 	# Execute command
 	DeveloperConsole.execute_command(command)
+	
+	# Retain focus on input field after frame is processed
+	# TODO: This doens't work
+	call_deferred("_retain_focus")
 
 func _on_input_gui_input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -70,6 +74,7 @@ func _on_command_executed(text: String) -> void:
 		clear_console()
 	else:
 		print_to_console(text)
+		_print_divider()	
 
 func print_to_console(text: String) -> void:
 	var label = Label.new()
@@ -91,6 +96,14 @@ func print_to_console(text: String) -> void:
 	await get_tree().process_frame
 	scroll_container.scroll_vertical = int(scroll_container.get_v_scroll_bar().max_value)
 
+func _print_divider() -> void:
+	var label = Label.new()
+	label.text = "------------------------------------------------------------------------------------------------"
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	label.label_settings = LabelSettings.new()
+	label.label_settings.font_size = 24
+	output_container.add_child(label)
+
 func clear_console() -> void:
 	for child in output_container.get_children():
 		child.queue_free()
@@ -106,3 +119,6 @@ func _navigate_history(direction: int) -> void:
 		input_field.caret_column = input_field.text.length()
 	else:
 		input_field.text = ""
+
+func _retain_focus() -> void:
+	input_field.grab_focus()
